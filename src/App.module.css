@@ -1,0 +1,45 @@
+.appRoot {
+  text-align: left;
+  margin: 5rem 2rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 2rem;
+  row-gap: 4rem;
+}
+
+.text-block{
+  max-width: 500px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+  font-family: "Alegreya", "Raleway";
+}
+
+p {
+  font-size: 1.125em;
+}
+
+button {
+  font-size: 1.125rem;
+  font-weight: bold;
+  padding: 1.5rem 2rem;
+  border: none;
+  background-color: #093575;
+  color: white;
+  cursor: pointer;
+  border-radius: .25rem;
+
+  &:hover {
+    background-color: black;
+  }
+}
+
+.logo {
+  height: 200px;
+  float: right;
+  pointer-events: none;
+}
