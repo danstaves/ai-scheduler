@@ -21,6 +21,23 @@ function Upload(){
         if(/[\d]+/.test(newNum)) setNumClasses(newNum);
     }
 
+    function uploadFile(){
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("numClasses", numClasses);
+
+        fetch("/api/getSchedule", {
+            method: "POST",
+            body: formData
+        }).then(res => {
+            if(res.ok){
+                console.log("File uploaded successfully");
+            }else{
+                console.error("Failed to upload file");
+            }
+        });
+    }
+
     return (
         <div className={style.Upload}>
             <h1>Let us plan your next Semester</h1>
@@ -35,7 +52,7 @@ function Upload(){
                 <input type="number" min="1" max="20" value={numClasses} onChange={onSetNumClasses}/>
             </div>}
 
-            {file && <button className={style.uploadButton}>Upload</button>}
+            {file && <button onClick={uploadFile} className={style.uploadButton}>Upload</button>}
         </div>
     );
 }
