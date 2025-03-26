@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import style from './Upload.module.css';
 
-function Upload(){
+function Upload({onUpload}){
     const [file, setFile] = useState(null);
     const fileName = useMemo(() => file ? file.name : "No File Selected", [file]);
     const [numClasses, setNumClasses] = useState(4);
@@ -22,21 +22,24 @@ function Upload(){
     }
 
     function uploadFile(){
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("numClasses", numClasses);
+		const formData = new FormData();
+		formData.append("file", file);
+		formData.append("numClasses", numClasses);
 
-        fetch("/api/getSchedule", {
-            method: "POST",
-            body: formData
-        }).then(res => {
-            if(res.ok){
-                console.log("File uploaded successfully");
-            }else{
-                console.error("Failed to upload file");
-            }
-        });
-    }
+		fetch("/api/getSchedule", {
+			method: "POST",
+			body: formData
+		}).then(async res => {
+			if(res.ok){
+				console.log("File uploaded successfully");
+                console.log(await res.text())
+                onUpload({url: res.url, status:"success"});
+			}else{
+				console.error("Failed to upload file");
+                onUpload({status:"error"});
+			}
+		});
+	}
 
     return (
         <div className={style.Upload}>
