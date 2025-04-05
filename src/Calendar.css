@@ -1,0 +1,23 @@
+.fc{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.fc-header-toolbar{
+    position:absolute;
+}
+.schedule{
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+.calendar{
+    width: 500px;
+    grid-area: cal;
+}
+.classList{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}

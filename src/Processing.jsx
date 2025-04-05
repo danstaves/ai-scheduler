@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import style from "./Processing.module.css";
 
-export default function Processing({url}){
+export default function Processing({url, onProcessingComplete}){
     const [status, setStatus] = useState("Communicating with server...");
     const [scheduleGenerated, setScheduleGenerated] = useState(false);
     const pollRef = useRef(0);
@@ -46,7 +46,7 @@ export default function Processing({url}){
         <div className={style.Processing}>
             <h1>Generating your Class Schedule</h1>
             {!scheduleGenerated && <p><span style={{fontWeight:"bold"}}>Please Wait...</span> {status}</p>}
-            {scheduleGenerated && <button>View Schedule</button>}
+            {scheduleGenerated && <button onClick={onProcessingComplete}>View Schedule</button>}
         </div>
     );
 }
