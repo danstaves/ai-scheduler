@@ -8,7 +8,7 @@ export default function Processing({url, onProcessingComplete}){
 
     const pollUrl = useCallback((queryUrl)=>{
         fetch(queryUrl)
-        .then(res=>res.json())
+        .then(res=>res.ok?res.json(): Promise.reject(res))
         .then(data=>{
             console.log("Received data: ", data);
             switch(data.status){
@@ -30,7 +30,11 @@ export default function Processing({url, onProcessingComplete}){
                     break;
             }
         })
-        .catch(err=>console.error(err));
+        .catch(err=>{
+            console.error(`Error fetching data: ${err}`);
+            setStatus("Error communicating with server. Please try again later.");
+            clearInterval(pollRef.current);
+        });
     },[]);
 
     useEffect(()=>{
