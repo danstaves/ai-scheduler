@@ -5,6 +5,7 @@ import Landing from "./Landing";
 import Upload from "./Upload";
 import Processing from "./Processing";
 import Calendar from './Calendar';
+import {data as sampleClasses} from './courseData.js';
 
 const States = Object.freeze({
 	landing: 0,
@@ -12,13 +13,6 @@ const States = Object.freeze({
 	processing: 2,
 	schedule: 3,
 });
-
-const sampleClasses = [
-	{title:"Math 101", startTime:"08:00", endTime:"09:30", daysOfWeek:[1,3]},
-	{title:"CS 102", startTime:"10:00", endTime:"11:30", daysOfWeek:[2,4]},
-	{title:"History 201", startTime:"12:00", endTime:"13:30", daysOfWeek:[1,3,5]},
-	{title:"Physics 301", startTime:"14:00", endTime:"15:30", daysOfWeek:[2,4]},
-]
 
 function App() {
 	const [currentState, setCurrentState] = useState(States.landing);

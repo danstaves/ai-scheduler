@@ -4,15 +4,20 @@
     border-radius: 4px;
 
     h1{
-        font-size: medium;
+        font-size: large;
         font-weight: 400;
+        margin: 0;
+        color: white;
+    }
+    p{
+        font-size: small;
         margin: 0;
         color: white;
     }
     h2{
         font-size: small;
         font-weight: 200;
-        margin: 0;
+        margin: .5rem 0 0 0;
         color:white;
     }
     /* + .classItem{
