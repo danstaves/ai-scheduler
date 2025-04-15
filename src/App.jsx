@@ -17,13 +17,14 @@ const States = Object.freeze({
 function App() {
 	const [currentState, setCurrentState] = useState(States.landing);
 	const [data, setData] = useState({url:""});
-
+	const [schedule, setSchedule] = useState({});
 	function onUpload(upload){
 		setData(cur=>({...cur, url:upload.url}));
 		setCurrentState(States.processing);
 	}
 
 	function displaySchedule(schedule){
+		setSchedule(schedule);
 		setCurrentState(States.schedule);
 	}
 
@@ -32,7 +33,7 @@ function App() {
 			{currentState === States.landing && <Landing onClick={()=>setCurrentState(States.upload)}/>}
 			{currentState === States.upload && <Upload onUpload={onUpload}/>}
 			{currentState === States.processing && <Processing url={data.url} onProcessingComplete={displaySchedule}/>}
-			{currentState === States.schedule && <Calendar classSchedule={sampleClasses}/>}
+			{currentState === States.schedule && <Calendar classSchedule={schedule}/>}
 			<img className={styles.logo} src={logo} alt="" />
 		</div>
 	);
