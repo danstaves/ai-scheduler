@@ -1,0 +1,10 @@
+.sectionItem{
+    display:flex;
+    flex-direction: row;
+    column-gap: 5px;
+    margin-left: 25px;
+
+    h2{
+        font-weight: 600;
+    }
+}

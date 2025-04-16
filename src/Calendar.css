@@ -22,3 +22,38 @@
     row-gap: 5px;
     width: 200px;
 }
+.availableSection{
+    display: grid;
+    flex-direction: row;
+    row-gap: 5px;
+    align-items: center;
+    grid-template-columns: 25px auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+        "expandIcon expandTitle"
+        "expandSection expandSection";
+
+    .expandIcon{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        grid-area: expandIcon;
+        justify-self: center;
+    }
+    .expandIcon:hover{
+        width: 25px;
+        height: 25px;
+    }
+    .expandtitle{
+        font-size: 20px;
+        font-weight: bold;
+        grid-area: expandTitle;
+    }
+    .expandSection{
+        grid-area: expandSection;
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+    }
+}

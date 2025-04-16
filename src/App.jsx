@@ -17,7 +17,7 @@ const States = Object.freeze({
 function App() {
 	const [currentState, setCurrentState] = useState(States.landing);
 	const [data, setData] = useState({url:""});
-	const [schedule, setSchedule] = useState({});
+	const [schedule, setSchedule] = useState(null);
 	function onUpload(upload){
 		setData(cur=>({...cur, url:upload.url}));
 		setCurrentState(States.processing);

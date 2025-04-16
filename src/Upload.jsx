@@ -5,10 +5,12 @@ function Upload({onUpload}){
     const [file, setFile] = useState(null);
     const fileName = useMemo(() => file ? file.name : "No File Selected", [file]);
     const [numClasses, setNumClasses] = useState(4);
+    const [busy, setBusy] = useState(false);
 
     function onSelectFileClick(){
         const input = document.createElement('input');
         input.type = 'file';
+        input.accept = '.mhtml';
         input.onchange = e => {
             const file = e.target.files[0];
             setFile(file);
@@ -22,6 +24,8 @@ function Upload({onUpload}){
     }
 
     function uploadFile(){
+        setBusy(true);
+
 		const formData = new FormData();
 		formData.append("file", file);
 		formData.append("numClasses", numClasses);
@@ -38,6 +42,7 @@ function Upload({onUpload}){
 				console.error("Failed to upload file");
                 onUpload({status:"error"});
 			}
+            setBusy(false);
 		});
 	}
 
@@ -55,7 +60,8 @@ function Upload({onUpload}){
                 <input type="number" min="1" max="20" value={numClasses} onChange={onSetNumClasses}/>
             </div>}
 
-            {file && <button onClick={uploadFile} className={style.uploadButton}>Upload</button>}
+            {file && !busy && <button onClick={uploadFile} className={style.uploadButton}>Upload</button>}
+            {busy && <p>Uploading File... Please Wait.</p>}
         </div>
     );
 }
